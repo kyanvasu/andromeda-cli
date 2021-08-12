@@ -1,0 +1,4 @@
+#!/usr/bin/env npx ts-node
+
+require = require('esm')(module /*, options*/);
+require('../src/cli').cli(process.argv);
