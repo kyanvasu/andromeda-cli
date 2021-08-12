@@ -1,0 +1,12 @@
+type OptionList = {
+    skipPrompts: boolean
+    git: boolean
+    template: string
+    runInstall: boolean
+    proyectName: string
+    templateDirectory: string 
+    targetDirectory: string,
+    targetCopyDirectory: string
+}
+
+export default OptionList;
