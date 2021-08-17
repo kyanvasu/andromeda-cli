@@ -45,14 +45,14 @@ async function initReactNative(options: OptionList) {
 
 async function InstallCutomDependecies(options: OptionList) {
 
-  install(packagesDev,
+  await install(packagesDev,
     {
       dev: true,
       prefer: 'npm',
       cwd: options.targetCopyDirectory
     })
 
-  const { stdout } = await install(packages, { cwd: options.targetCopyDirectory })
+  await install(packages, { cwd: options.targetCopyDirectory })
 }
 
 const copyTemplateFiles = async (options: OptionList) => {
