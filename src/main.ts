@@ -6,7 +6,8 @@ import { promisify } from 'util';
 import OptionList from './types/option-list';
 import execa from 'execa';
 import Listr from 'listr';
-import { projectInstall } from 'pkg-install';
+import { install } from 'pkg-install';
+import {packages, packagesDev} from "./custom-packages/packages";
 
 const TEMPLATES: string = 'templates';
 const ERROR: string = 'ERROR:';
@@ -40,6 +41,18 @@ async function initReactNative(options: OptionList) {
   }
 
   return;
+}
+
+async function InstallCutomDependecies(options: OptionList) {
+
+  install(packagesDev,
+    {
+      dev: true,
+      prefer: 'npm',
+      cwd: options.targetCopyDirectory
+    })
+
+  const { stdout } = await install(packages, { cwd: options.targetCopyDirectory })
 }
 
 const copyTemplateFiles = async (options: OptionList) => {
@@ -116,10 +129,8 @@ export const createProject = async (options: OptionList) => {
     {
       title: 'Install customs dependencies',
       task: () =>
-        projectInstall({
-          cwd: options.targetCopyDirectory,
-        })
-    },
+      InstallCutomDependecies(options)
+      },
   ]);
 
   await tasks.run();
