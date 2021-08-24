@@ -1,11 +1,11 @@
 import arg from 'arg';
-import inquirer, { Question, Answers } from 'inquirer';
+import inquirer, { Question, Answers, prompt } from 'inquirer';
 import OptionList from './types/option-list';
 import { createProject } from './main';
 
 const DEFAULT_TEMPLATE: string = 'TypeScript';
 
-const parseArgumentsIntoOptions = (rawArgs: Array<string>=[]): OptionList => {
+const parseArgumentsIntoOptions = async (rawArgs: Array<string>=[]): Promise<OptionList> => {
     const spec: arg.Spec = {
         '--git': Boolean,
         '--yes': Boolean,
@@ -21,22 +21,41 @@ const parseArgumentsIntoOptions = (rawArgs: Array<string>=[]): OptionList => {
 
     const args = arg(spec, options)
 
+    const answers = await prompt(
+    [
+        {
+            type: 'input',
+            message: "Insert the name of your project",
+            name: "proyectName",
+            default: args._[0]
+        },
+        {
+            type: 'confirm',
+            message: "Do you want to initialize a git",
+            name: "git",
+            default: false
+        },
+        {
+            type: 'confirm',
+            message: "Do you want to run the installer",
+            name: "runInstall",
+            default: false
+        }
+    ]);
+
+
     return {
         skipPrompts: args['--yes'] || false,
-        git: args['--git'] || false,
         template: DEFAULT_TEMPLATE,
-        proyectName:args._[0],
-        runInstall: args['--install'] || false,
         targetDirectory:'',
         templateDirectory:'',
-        targetCopyDirectory:''
+        targetCopyDirectory:'',
+        ...answers
     };
 }
 
-   
 
 export const cli = async (args: Array<string> = []) => {
-    let options: OptionList = parseArgumentsIntoOptions(args);
+    let options: OptionList = await parseArgumentsIntoOptions(args);
     await createProject(options);
-
 }
