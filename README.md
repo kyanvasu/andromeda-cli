@@ -41,10 +41,11 @@ Create-Project Project_Name
 - Packages
   - React Navigation 6.0.1
   - Formik 2.2.9
+  - Color 4.0.1
+  - Styled Components 5.3.0
   - RN Gesture Handler 3.5.0
   - RN Localized Text 1.0.4
-  - Color 4.0.1
   - RN Vector Icons 8.1.0
-  - Styled Components 5.3.0
   - RN IphoneX Helper 1.3.1
+  - RN Event Listener 1.0.7
   
