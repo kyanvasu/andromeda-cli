@@ -14,7 +14,8 @@ const packages: PackageMap = {
     "styled-components": "5.3.0",
     "yup": "0.32.9",
     "react-native-iphone-x-helper": "1.3.1",
-
+    "react-native-event-listeners": "1.0.7",
+    "@kanvas/client-js": "0.0.1"
 }
 
 const packagesDev: PackageMap = {
