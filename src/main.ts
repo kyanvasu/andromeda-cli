@@ -8,7 +8,7 @@ import execa from 'execa';
 import Listr from 'listr';
 import { install } from 'pkg-install';
 import {packages, packagesDev} from "./custom-packages/packages";
-import { PAKCAGE_MANAGER_DEFAULT_ANSWER } from './questions';
+import { PACKAGE_MANAGER_DEFAULT_ANSWER } from './questions';
 
 const TEMPLATES: string = 'templates';
 const ERROR: string = 'ERROR:';
@@ -51,7 +51,7 @@ async function InstallCutomDependecies(options: OptionList) {
     cwd: options.targetCopyDirectory
   }
 
-  const execute = options.packageManager === PAKCAGE_MANAGER_DEFAULT_ANSWER ? 'npm i' : 'yarn';
+  const execute = options.packageManager === PACKAGE_MANAGER_DEFAULT_ANSWER ? 'npm i' : 'yarn';
 
   const result = await execa.command(`cd ./${options.proyectName} && ${execute}`)
 

@@ -1,6 +1,6 @@
 import { QuestionCollection } from "inquirer"
 
-export const PAKCAGE_MANAGER_DEFAULT_ANSWER = 'npm';
+export const PACKAGE_MANAGER_DEFAULT_ANSWER = 'npm';
 
 /**
  * @description return a array of question to be use by inquier package
@@ -32,7 +32,7 @@ export const newProjectQuestions = (name?: string): QuestionCollection<any> => {
       message: 'Which package manager do you prefer',
       choices: ['npm', 'yarn'],
       name: 'packageManager',
-      default: PAKCAGE_MANAGER_DEFAULT_ANSWER,
+      default: PACKAGE_MANAGER_DEFAULT_ANSWER,
     }
   ]
 }
