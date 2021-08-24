@@ -28,7 +28,7 @@ async function initGit(options: OptionList) {
 }
 
 async function initReactNative(options: OptionList) {
-  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --template react-native-template-typescript`;
+  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --version 0.65.1 --template react-native-template-typescript`;
 
   const result: execa.ExecaReturnValue<string> = await execa.command(installReactNativeCMD, {
     cwd: options.targetDirectory,
@@ -110,7 +110,7 @@ export const createProject = async (options: OptionList) => {
 
   const tasks = new Listr([
     {
-      title: 'Initialize Ract-Native',
+      title: 'Initialize React-Native',
       task: () => initReactNative(options)
     },
     {
