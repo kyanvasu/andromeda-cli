@@ -6,7 +6,8 @@ type OptionList = {
     proyectName: string
     templateDirectory: string 
     targetDirectory: string,
-    targetCopyDirectory: string
+    targetCopyDirectory: string,
+    packageManager: string;
 }
 
 export default OptionList;

@@ -1,7 +1,8 @@
 import arg from 'arg';
-import inquirer, { Question, Answers, prompt } from 'inquirer';
+import { prompt } from 'inquirer';
 import OptionList from './types/option-list';
 import { createProject } from './main';
+import { newProjectQuestions } from './questions';
 
 const DEFAULT_TEMPLATE: string = 'TypeScript';
 
@@ -20,37 +21,15 @@ const parseArgumentsIntoOptions = async (rawArgs: Array<string>=[]): Promise<Opt
     }
 
     const args = arg(spec, options)
-
-    const answers = await prompt(
-    [
-        {
-            type: 'input',
-            message: "Insert the name of your project",
-            name: "proyectName",
-            default: args._[0]
-        },
-        {
-            type: 'confirm',
-            message: "Do you want to initialize a git",
-            name: "git",
-            default: false
-        },
-        {
-            type: 'confirm',
-            message: "Do you want to run the installer",
-            name: "runInstall",
-            default: false
-        }
-    ]);
-
+    const answers = await prompt(newProjectQuestions(args._[0]));
 
     return {
+        ...answers,
         skipPrompts: args['--yes'] || false,
         template: DEFAULT_TEMPLATE,
         targetDirectory:'',
         templateDirectory:'',
         targetCopyDirectory:'',
-        ...answers
     };
 }
 
