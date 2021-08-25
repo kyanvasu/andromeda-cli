@@ -6,7 +6,9 @@ import { promisify } from 'util';
 import OptionList from './types/option-list';
 import execa from 'execa';
 import Listr from 'listr';
-import { projectInstall } from 'pkg-install';
+import { install } from 'pkg-install';
+import {packages, packagesDev} from "./custom-packages/packages";
+import { PACKAGE_MANAGER_DEFAULT_ANSWER } from './questions';
 
 const TEMPLATES: string = 'templates';
 const ERROR: string = 'ERROR:';
@@ -27,7 +29,7 @@ async function initGit(options: OptionList) {
 }
 
 async function initReactNative(options: OptionList) {
-  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --template react-native-template-typescript`;
+  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --version 0.65.1 --skip-install --template react-native-template-typescript`;
 
   const result: execa.ExecaReturnValue<string> = await execa.command(installReactNativeCMD, {
     cwd: options.targetDirectory,
@@ -40,6 +42,32 @@ async function initReactNative(options: OptionList) {
   }
 
   return;
+}
+
+async function InstallCutomDependecies(options: OptionList) {
+
+  const installDefaults = {
+    prefer: options.packageManager as any,
+    cwd: options.targetCopyDirectory
+  }
+
+  const execute = options.packageManager === PACKAGE_MANAGER_DEFAULT_ANSWER ? 'npm i' : 'yarn';
+
+  const result = await execa.command(`cd ./${options.proyectName} && ${execute}`)
+
+  if (result.failed) {
+
+    return Promise.reject(new Error('Failed installing dependencies.'));
+
+  }
+
+  await install(packagesDev,
+    {
+      dev: true,
+      ...installDefaults,
+    })
+
+  await install(packages, installDefaults)
 }
 
 const copyTemplateFiles = async (options: OptionList) => {
@@ -97,7 +125,7 @@ export const createProject = async (options: OptionList) => {
 
   const tasks = new Listr([
     {
-      title: 'Initialize Ract-Native',
+      title: 'Initialize React-Native',
       task: () => initReactNative(options)
     },
     {
@@ -115,11 +143,8 @@ export const createProject = async (options: OptionList) => {
     },
     {
       title: 'Install customs dependencies',
-      task: () =>
-        projectInstall({
-          cwd: options.targetCopyDirectory,
-        })
-    },
+      task: () => InstallCutomDependecies(options)
+      },
   ]);
 
   await tasks.run();
