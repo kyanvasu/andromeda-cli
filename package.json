@@ -2,7 +2,8 @@
   "name": "@kanvas/andromeda-cli",
   "version": "0.0.1",
   "description": "",
-  "main": "src/index.js",
+  "main": "main/cli.js",
+  "types": "main/cli.d.ts",
   "bin": {
     "create-project": "bin/create-project"
   },
@@ -10,14 +11,16 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "copy-files": "cp -R src/templates/. dist/templates",
+    "compile": "rimraf ./dist && tsc -p . && yarn copy-files",
+    "prepare": "yarn compile"
   },
   "keywords": [
     "cli",
     "create-project"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/args": "^3.0.1",
     "@types/chalk": "^2.2.0",
@@ -36,5 +39,8 @@
     "ncp": "^2.0.0",
     "pkg-install": "^1.0.0",
     "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   }
 }
