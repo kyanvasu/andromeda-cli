@@ -123,7 +123,6 @@ export const createProject = async (options: OptionList) => {
     process.exit(1);
   }
 
-  console.log(options.runInstall);
   const tasks = new Listr([
     {
       title: 'Initialize React-Native',
