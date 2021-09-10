@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 jest.useFakeTimers();
 
+import React from 'react';
 import 'react-native-gesture-handler/jestSetup';
 
 jest.mock('react-native-reanimated', () => {
@@ -11,6 +12,13 @@ jest.mock('react-native-reanimated', () => {
   Reanimated.default.call = () => {};
 
   return Reanimated;
+});
+
+jest.mock('react-native-localized-text', () => {
+  return {
+    LocalizedText: () => <></>,
+    TextTransform: 'capital',
+  };
 });
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing

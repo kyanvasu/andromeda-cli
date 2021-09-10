@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {LocalizedText, TextTransform} from 'react-native-localized-text';
 
 interface IProps {}
 
@@ -10,7 +11,7 @@ interface IProps {}
 const ExampleScreen: React.FC<IProps> = () => {
   return (
     <View>
-      <Text>Hello</Text>
+      <LocalizedText localeKey="hello" textTransform={TextTransform.CAPITAL} />
     </View>
   );
 };
