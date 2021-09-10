@@ -4,4 +4,3 @@ package-lock.json
 src/templates/settings/.tsconfig.json.js.icloud
 yarn.lock
 test
-dist
