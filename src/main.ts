@@ -29,7 +29,7 @@ async function initGit(options: OptionList) {
 }
 
 async function initReactNative(options: OptionList) {
-  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --version 0.65.1 --skip-install --template react-native-template-typescript`;
+  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --version 0.66.1 --skip-install --template react-native-template-typescript`;
 
   const result: execa.ExecaReturnValue<string> = await execa.command(installReactNativeCMD, {
     cwd: options.targetDirectory,
