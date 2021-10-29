@@ -29,7 +29,7 @@ async function initGit(options: OptionList) {
 }
 
 async function initReactNative(options: OptionList) {
-  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --version 0.65.1 --skip-install --template react-native-template-typescript`;
+  const installReactNativeCMD: string = `npx react-native init ${options.proyectName} --version 0.66.1 --skip-install --template react-native-template-typescript`;
 
   const result: execa.ExecaReturnValue<string> = await execa.command(installReactNativeCMD, {
     cwd: options.targetDirectory,
@@ -76,7 +76,7 @@ const copyTemplateFiles = async (options: OptionList) => {
 }
 
 const replaceSettingFile = async (options: OptionList) => {
-  const RemoveFIlesCMD: string = `rm babel.config.js tsconfig.json`;
+  const RemoveFIlesCMD: string = `rm -rf babel.config.js tsconfig.json App.tsx index.js __tests__`;
 
   const result: execa.ExecaReturnValue<string> = await execa.command(RemoveFIlesCMD, {
     cwd: options.targetCopyDirectory,
@@ -143,8 +143,9 @@ export const createProject = async (options: OptionList) => {
     },
     {
       title: 'Install customs dependencies',
-      task: () => InstallCutomDependecies(options)
-      },
+      task: () => InstallCutomDependecies(options),
+      enabled: () => options.runInstall
+    },
   ]);
 
   await tasks.run();
