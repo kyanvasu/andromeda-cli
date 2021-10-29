@@ -11,7 +11,7 @@
 
 *Example running cli command in terminal:*
 ```
-Create-Project Project_Name
+npx @kanvas/andromeda-cli <project_name>
 ```
 ```
 - App.tsx
@@ -48,4 +48,7 @@ Create-Project Project_Name
   - RN Vector Icons 8.1.0
   - RN IphoneX Helper 1.3.1
   - RN Event Listener 1.0.7
+  - @kanvas/client-js 0.0.5
+  - @kanvas/andromeda 0.0.4
+  - @react-native-community/hooks 2.8.0
   
