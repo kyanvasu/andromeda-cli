@@ -1,9 +1,9 @@
 {
   "name": "@kanvas/andromeda-cli",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
-  "main": "main/cli.js",
-  "types": "main/cli.d.ts",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
   "bin": {
     "create-project": "bin/create-project"
   },
