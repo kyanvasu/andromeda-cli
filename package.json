@@ -11,6 +11,7 @@
     "access": "public"
   },
   "scripts": {
+    "test": "yarn compile && ./bin/create-project test",
     "copy-files": "cp -R src/templates/. dist/templates",
     "compile": "rimraf ./dist && tsc -p . && yarn copy-files",
     "prepare": "yarn compile"
