@@ -14,22 +14,22 @@
 npx @kanvas/andromeda-cli <project_name>
 ```
 ```
-- App.tsx
-- app.json
-- eslintrc.js
-- metro.config.js
-- prettierrc.js
-- tsconfig.json
-- __tests__
-- babel.config.js 
-- index.js
-- react-native.config.js 
-- tsconfig.json
-- android 
-- babel.config.js
-- ios  
-- package.json 
+- ios
+- android
 - src
+  - components
+    - atoms
+    - molecules
+    - organisms
+    - templates
+  - domain
+    - shared
+  - theme
+  - locales
+- app.json
+- index.js
+- package.json 
+- react-native.config.js 
 ```
 
 ## Packages and structures and tools integrate on this CLI:
