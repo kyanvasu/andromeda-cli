@@ -5,7 +5,7 @@
   "main": "dist/cli.js",
   "types": "dist/cli.d.ts",
   "bin": {
-    "create-project": "bin/create-project"
+    "@kanvas/andromeda-cli": "bin/create-project"
   },
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,8 @@
   },
   "keywords": [
     "cli",
-    "create-project"
+    "@kanvas",
+    "@kanvas/andromeda-cli"
   ],
   "author": "",
   "license": "MIT",
