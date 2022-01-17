@@ -1,6 +1,6 @@
 {
   "name": "@kanvas/andromeda-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/cli.js",
   "types": "dist/cli.d.ts",
@@ -11,6 +11,7 @@
     "access": "public"
   },
   "scripts": {
+    "test": "yarn compile && ./bin/create-project test",
     "copy-files": "cp -R src/templates/. dist/templates",
     "compile": "rimraf ./dist && tsc -p . && yarn copy-files",
     "prepare": "yarn compile"
